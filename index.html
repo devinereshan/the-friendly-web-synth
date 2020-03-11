@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Web Synth</title>
+</head>
+<body>
+    <div class="wave-controls-parent">
+        <div class="wave-controls">
+            <h2>Sine</h2>
+            <div class="volume-container">
+                <button class="toggle-active sine-toggle active">On</button>
+                <input type="range" min="0" max="1" step="0.01" value="0.2" class="volume-slider">
+            </div>
+        </div>
+        <div class="wave-controls">
+            <h2>Square</h2>
+            <div class="volume-container">
+                <button class="toggle-active square-toggle">Off</button>
+                <input type="range" min="0" max="1" step="0.01" value="0.2" class="volume-slider">
+            </div>
+        </div>
+        <div class="wave-controls">
+            <h2>Triangle</h2>
+            <div class="volume-container">
+                <button class="toggle-active triangle-toggle">Off</button>
+                <input type="range" min="0" max="1" step="0.01" value="0.2" class="volume-slider">
+            </div>
+        </div>
+        <div class="wave-controls">
+            <h2>Sawtooth</h2>
+            <div class="volume-container">
+                <button class="toggle-active sawtooth-toggle">Off</button>
+                <input type="range" min="0" max="1" step="0.01" value="0.2" class="volume-slider">
+            </div>
+        </div>
+    </div>
+
+    <div class="keyboard-container">
+        <!-- 7 black keys -->
+        <div class="black-keys">
+            <div class="black-key note-cs3"></div>
+            <div class="black-key note-ds3"></div>
+            <div class="black-key space"></div>
+            <div class="black-key note-fs3"></div>
+            <div class="black-key note-gs3"></div>
+            <div class="black-key note-as4"></div>
+            <div class="black-key space"></div>
+            <div class="black-key note-cs4"></div>
+            <div class="black-key note-ds4"></div>
+        </div>
+
+        <!-- 10 white keys -->
+        <div class="white-keys">
+            <div class="white-key note-c3"></div>
+            <div class="white-key note-d3"></div>
+            <div class="white-key note-e3"></div>
+            <div class="white-key note-f3"></div>
+            <div class="white-key note-g3"></div>
+            <div class="white-key note-a4"></div>
+            <div class="white-key note-b4"></div>
+            <div class="white-key note-c4"></div>
+            <div class="white-key note-d4"></div>
+            <div class="white-key note-e4"></div>
+        </div>
+    </div>
+
+    <script src="main.js"></script>
+</body>
+</html>
