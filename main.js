@@ -4,9 +4,8 @@ class WaveHandler {
     }
 
     buildWaveDefaults() {
-        let waves = [
-            {
-                name: "sine",
+        let waves = {
+            sine: {
                 settings: {
                     source: "wave",
                     options: {
@@ -20,8 +19,7 @@ class WaveHandler {
                 active: true
             },
 
-            {
-                name: "square", 
+            square: {
                 settings: {
                     source: "wave",
                     options: {
@@ -35,8 +33,7 @@ class WaveHandler {
                 active: false
             },
 
-            {
-                name: "triangle", 
+            triangle: {
                 settings: {
                     source: "wave",
                     options: {
@@ -50,8 +47,7 @@ class WaveHandler {
                 active: false
             },
 
-            {
-                name: "sawtooth", 
+            sawtooth: { 
                 settings: {
                     source: "wave",
                     options: {
@@ -63,14 +59,14 @@ class WaveHandler {
                 },
 
                 active: true
-            },
-        ]
+            }
+        }
 
         return waves;
     }
 
     playSine(freq) {
-        let tempSine = new Pizzicato.Sound(this.waves[0].settings);
+        let tempSine = new Pizzicato.Sound(this.waves.sine.settings);
         tempSine.frequency = freq;
 
         tempSine.play();
@@ -82,12 +78,12 @@ class WaveHandler {
 
     playSound(freq) {
         let tempGroup = new Pizzicato.Group([]);
-        this.waves.forEach((wave) => {
-            if (wave.active) {
-                wave.settings.options.frequency = freq;
-                tempGroup.addSound(new Pizzicato.Sound(wave.settings));
+        for (let wave in this.waves) {
+            if (this.waves[wave].active) {
+                this.waves[wave].settings.options.frequency = freq;
+                tempGroup.addSound(new Pizzicato.Sound(this.waves[wave].settings));
             }
-        });
+        };
 
         tempGroup.play();
      
@@ -133,17 +129,21 @@ function connectKeysToNotes(keyArray, noteArray) {
         });
     
         window.addEventListener("keydown", event => {
+            console.log("keydown");
             if (event.key == noteArray[index].letterKey && !noteArray[index].isPressed) {
                 waveHandler.playSound(noteArray[index].frequency);
                 noteArray[index].isPressed = true;
                 key.classList.add("active-key");
+                console.log(`noteArray[${index}] isPressed: ${noteArray[index].isPressed}`)
             }
         });
     
         window.addEventListener("keyup", event => {
+            console.log("keyup");
             if (event.key == noteArray[index].letterKey) {
                 noteArray[index].isPressed = false;
                 key.classList.remove("active-key");
+                console.log(`noteArray[${index}] isPressed: ${noteArray[index].isPressed}`)
             }
         });
     });
