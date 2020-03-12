@@ -125,6 +125,11 @@ button {
 
 }
 
+.active-key {
+    background-color: #2c9c99;
+    border: #66fcf1 2px solid;
+}
+
 .space {
     opacity: 0;
     pointer-events: none;

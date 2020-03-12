@@ -1,6 +1,6 @@
 
 const whiteNoteFrequencies = [
-    {name: "c4", frequency: 261.63},
+    {name: "c4", frequency: 261.63, letterKey: "a", isPressed: false},
     {name: "d4", frequency: 293.66},
     {name: "e4", frequency: 329.63},
     {name: "f4", frequency: 349.23},
@@ -30,6 +30,25 @@ whiteKeys.forEach((key, index) => {
     key.addEventListener('mousedown', () => {
         playNewSound(whiteNoteFrequencies[index].frequency);
     })
+
+    if (whiteNoteFrequencies[index].letterKey === "a") {
+        console.log("found letterkey");
+        window.addEventListener("keydown", event => {
+            if (event.key == "a" && !whiteNoteFrequencies[index].isPressed) {
+                console.log("key pressed");
+                playNewSound(whiteNoteFrequencies[index].frequency);
+                whiteNoteFrequencies[index].isPressed = true;
+                key.classList.add("active-key");
+            }
+        });
+
+        window.addEventListener("keyup", event => {
+            if (event.key == "a") {
+                whiteNoteFrequencies[index].isPressed = false;
+                key.classList.remove("active-key");
+            }
+        })
+    }
 });
 
 
