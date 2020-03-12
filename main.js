@@ -58,7 +58,7 @@ class WaveHandler {
                     }    
                 },
 
-                active: true
+                active: false
             }
         }
 
@@ -91,6 +91,10 @@ class WaveHandler {
             tempGroup.pause();
         }, 200);
     }
+
+    toggleWaveActive(wave, state) {
+        this.waves[wave].active = state;
+    }
 }
 
 const whiteNotes = [
@@ -121,11 +125,30 @@ const blackKeys = document.querySelectorAll('.black-key');
 const waveHandler = new WaveHandler();
 
 
+const toggleButtons = document.querySelectorAll('.toggle-active');
+
+function connectToggleButtons() {
+    toggleButtons.forEach((button) => {
+        button.addEventListener('click', () => {
+            if (button.classList.contains('active')) {
+                waveHandler.toggleWaveActive(button.name, false);
+                button.classList.remove('active');
+                button.innerHTML = "Off";
+            } else {
+                waveHandler.toggleWaveActive(button.name, true);
+                button.classList.add('active');
+                button.innerHTML = "On";
+            }
+        })
+    })
+}
+
+connectToggleButtons();
+
 function connectKeysToNotes(keyArray, noteArray) {
     keyArray.forEach((key, index) => {
         key.addEventListener('mousedown', () => {
             waveHandler.playSound(noteArray[index].frequency);
-
         });
     
         window.addEventListener("keydown", event => {
