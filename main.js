@@ -52,33 +52,7 @@ function connectKeysToNotes(keyArray, noteArray) {
 
 connectKeysToNotes(whiteKeys, whiteNotes);
 connectKeysToNotes(blackKeys, blackNotes);
-// whiteKeys.forEach((key, index) => {
-//     key.addEventListener('mousedown', () => {
-//         playNewSound(whiteNotes[index].frequency);
-//     })
 
-//     window.addEventListener("keydown", event => {
-//         if (event.key == whiteNotes[index].letterKey && !whiteNotes[index].isPressed) {
-//             playNewSound(whiteNotes[index].frequency);
-//             whiteNotes[index].isPressed = true;
-//             key.classList.add("active-key");
-//         }
-//     });
-
-//     window.addEventListener("keyup", event => {
-//         if (event.key == whiteNotes[index].letterKey) {
-//             whiteNotes[index].isPressed = false;
-//             key.classList.remove("active-key");
-//         }
-//     })
-// });
-
-
-// blackKeys.forEach((key, index) => {
-//     key.addEventListener('mousedown', () => {
-//         playNewSound(blackNotes[index].frequency);
-//     })
-// });
 
 
 function playNewSound(freq) {
