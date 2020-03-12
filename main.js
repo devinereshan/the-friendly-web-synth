@@ -24,53 +24,36 @@ const blackNoteFrequencies = [
 
 const whiteKeys = document.querySelectorAll('.white-key');
 const blackKeys = document.querySelectorAll('.black-key');
-const whiteKeySounds = [];
-const blackKeySounds = [];
-
-
-whiteNoteFrequencies.forEach(() => {
-    whiteKeySounds.push(createDefaultWave());
-});
-
-
-blackNoteFrequencies.forEach(() => {
-    blackKeySounds.push(createDefaultWave());
-});
-
-function createDefaultWave() {
-    return new Pizzicato.Sound({
-        source: "wave",
-        options: {
-            type: "sine",
-            attack: 0.1,
-            release: 1,
-            volume: 0.5
-        }
-    });
-}
 
 
 whiteKeys.forEach((key, index) => {
-    whiteKeySounds[index].frequency = whiteNoteFrequencies[index].frequency;
-
     key.addEventListener('mousedown', () => {
-        playSound(whiteKeySounds[index]);
+        playNewSound(whiteNoteFrequencies[index].frequency);
     })
 });
 
 
 blackKeys.forEach((key, index) => {
-    blackKeySounds[index].frequency = blackNoteFrequencies[index].frequency;
-
     key.addEventListener('mousedown', () => {
-        playSound(blackKeySounds[index]);
+        playNewSound(blackNoteFrequencies[index].frequency);
     })
 });
 
 
-function playSound(sound) {
-    sound.play();
+function playNewSound(freq) {
+    let tempSound = new Pizzicato.Sound({
+        source: "wave",
+        options: {
+            type: "sine",
+            attack: 0.1,
+            release: 1,
+            volume: 0.5,
+            frequency: freq
+        }
+    });
+
+    tempSound.play();
     setTimeout(() => {
-        sound.pause();
+        tempSound.pause();
     }, 200);
 }
