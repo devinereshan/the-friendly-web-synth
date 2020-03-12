@@ -89,7 +89,8 @@ button {
     pointer-events: none;
 }
 
-.black-key {
+.black-key,
+.space {
     background-color: #202833;
     width: 7%;
     height: 100%;
