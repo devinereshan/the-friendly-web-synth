@@ -129,21 +129,17 @@ function connectKeysToNotes(keyArray, noteArray) {
         });
     
         window.addEventListener("keydown", event => {
-            console.log("keydown");
             if (event.key == noteArray[index].letterKey && !noteArray[index].isPressed) {
                 waveHandler.playSound(noteArray[index].frequency);
                 noteArray[index].isPressed = true;
                 key.classList.add("active-key");
-                console.log(`noteArray[${index}] isPressed: ${noteArray[index].isPressed}`)
             }
         });
     
         window.addEventListener("keyup", event => {
-            console.log("keyup");
             if (event.key == noteArray[index].letterKey) {
                 noteArray[index].isPressed = false;
                 key.classList.remove("active-key");
-                console.log(`noteArray[${index}] isPressed: ${noteArray[index].isPressed}`)
             }
         });
     });
