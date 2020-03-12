@@ -1,24 +1,98 @@
 class WaveHandler {
     constructor() {
-        this.sineWaveSettings = {
-            source: "wave",
-            options: {
-                type: "sine",
-                attack: 0.1,
-                release: 1,
-                volume: 0.5
-            }
-        };
+        this.waves = this.buildWaveDefaults();
     }
 
-    playSound(freq) {
-        let tempSine = new Pizzicato.Sound(this.sineWaveSettings);
+    buildWaveDefaults() {
+        let waves = [
+            {
+                name: "sine",
+                settings: {
+                    source: "wave",
+                    options: {
+                        type: "sine",
+                        attack: 0.1,
+                        release: 0.5,
+                        volume: 0.4
+                    }    
+                },
+
+                active: true
+            },
+
+            {
+                name: "square", 
+                settings: {
+                    source: "wave",
+                    options: {
+                        type: "square",
+                        attack: 0.01,
+                        release: 0.2,
+                        volume: 0.1
+                    }    
+                },
+
+                active: false
+            },
+
+            {
+                name: "triangle", 
+                settings: {
+                    source: "wave",
+                    options: {
+                        type: "triangle",
+                        attack: 0.01,
+                        release: 0.2,
+                        volume: 0.1
+                    }    
+                },
+
+                active: false
+            },
+
+            {
+                name: "sawtooth", 
+                settings: {
+                    source: "wave",
+                    options: {
+                        type: "sawtooth",
+                        attack: 0.01,
+                        release: 0.2,
+                        volume: 0.1
+                    }    
+                },
+
+                active: true
+            },
+        ]
+
+        return waves;
+    }
+
+    playSine(freq) {
+        let tempSine = new Pizzicato.Sound(this.waves[0].settings);
         tempSine.frequency = freq;
 
         tempSine.play();
      
         setTimeout(() => {
             tempSine.pause();
+        }, 200);
+    }
+
+    playSound(freq) {
+        let tempGroup = new Pizzicato.Group([]);
+        this.waves.forEach((wave) => {
+            if (wave.active) {
+                wave.settings.options.frequency = freq;
+                tempGroup.addSound(new Pizzicato.Sound(wave.settings));
+            }
+        });
+
+        tempGroup.play();
+     
+        setTimeout(() => {
+            tempGroup.pause();
         }, 200);
     }
 }
