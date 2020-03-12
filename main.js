@@ -1,3 +1,27 @@
+class WaveHandler {
+    constructor() {
+        this.sineWaveSettings = {
+            source: "wave",
+            options: {
+                type: "sine",
+                attack: 0.1,
+                release: 1,
+                volume: 0.5
+            }
+        };
+    }
+
+    playSound(freq) {
+        let tempSine = new Pizzicato.Sound(this.sineWaveSettings);
+        tempSine.frequency = freq;
+
+        tempSine.play();
+     
+        setTimeout(() => {
+            tempSine.pause();
+        }, 200);
+    }
+}
 
 const whiteNotes = [
     {name: "c4", frequency: 261.63, letterKey: "a", isPressed: false},
@@ -24,17 +48,19 @@ const blackNotes = [
 
 const whiteKeys = document.querySelectorAll('.white-key');
 const blackKeys = document.querySelectorAll('.black-key');
+const waveHandler = new WaveHandler();
 
 
 function connectKeysToNotes(keyArray, noteArray) {
     keyArray.forEach((key, index) => {
         key.addEventListener('mousedown', () => {
-            playNewSound(noteArray[index].frequency);
-        })
+            waveHandler.playSound(noteArray[index].frequency);
+
+        });
     
         window.addEventListener("keydown", event => {
             if (event.key == noteArray[index].letterKey && !noteArray[index].isPressed) {
-                playNewSound(noteArray[index].frequency);
+                waveHandler.playSound(noteArray[index].frequency);
                 noteArray[index].isPressed = true;
                 key.classList.add("active-key");
             }
@@ -45,7 +71,7 @@ function connectKeysToNotes(keyArray, noteArray) {
                 noteArray[index].isPressed = false;
                 key.classList.remove("active-key");
             }
-        })
+        });
     });
 }
 
@@ -53,22 +79,3 @@ function connectKeysToNotes(keyArray, noteArray) {
 connectKeysToNotes(whiteKeys, whiteNotes);
 connectKeysToNotes(blackKeys, blackNotes);
 
-
-
-function playNewSound(freq) {
-    let tempSound = new Pizzicato.Sound({
-        source: "wave",
-        options: {
-            type: "sine",
-            attack: 0.1,
-            release: 1,
-            volume: 0.5,
-            frequency: freq
-        }
-    });
-
-    tempSound.play();
-    setTimeout(() => {
-        tempSound.pause();
-    }, 200);
-}
