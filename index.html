@@ -3,37 +3,101 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css?family=Poppins&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <title>Web Synth</title>
 </head>
 <body>
     <div class="wave-controls-parent">
         <div class="wave-controls">
-            <h2>Sine</h2>
-            <div class="volume-container">
+            <div class="control-top">
+                <h2>Sine</h2>
                 <button name="sine" class="toggle-active sine-toggle active">On</button>
-                <input name="sine" type="range" min="0" max="0.7" step="0.01" value="0.1" class="volume-slider wave-volume">
+            </div>
+            <div class="slider-container">
+                <label for="sine">Volume:</label>
+                <input name="sine" type="range" min="0" max="0.7" step="0.01" value="0.1" class="slider wave-volume">
+            </div>
+            <div class="slider-container">
+                <label for="sine">Attack:</label>
+                <input name="sine" type="range" min="0" max="0.3" step="0.01" value="0.05" class="slider wave-attack">
+            </div>
+            <div class="slider-container">
+                <label for="sine">Release:</label>
+                <input name="sine" type="range" min="0" max="0.3" step="0.01" value="0.05" class="slider wave-release">
+            </div>
+            <div class="slider-container">
+                <label for="sine">Detune:</label>
+                <input name="sine" type="range" min="0" max="0.3" step="0.01" value="0.05" class="slider wave-detune">
             </div>
         </div>
+
         <div class="wave-controls">
-            <h2>Square</h2>
-            <div class="volume-container">
+            <div class="control-top">
+                <h2>Square</h2>
                 <button name="square" class="toggle-active square-toggle">Off</button>
-                <input name="square" type="range" min="0" max="0.5" step="0.01" value="0.05" class="volume-slider wave-volume">
+            </div>
+            <div class="slider-container">
+                <label for="square">Volume:</label>
+                <input name="square" type="range" min="0" max="0.5" step="0.01" value="0.05" class="slider wave-volume">
+            </div>
+            <div class="slider-container">
+                <label for="square">Attack:</label>
+                <input name="square" type="range" min="0" max="0.3" step="0.01" value="0.05" class="slider wave-attack">
+            </div>
+            <div class="slider-container">
+                <label for="square">Release:</label>
+                <input name="square" type="range" min="0" max="0.3" step="0.01" value="0.05" class="slider wave-release">
+            </div>
+            <div class="slider-container">
+                <label for="square">Detune:</label>
+                <input name="square" type="range" min="0" max="0.3" step="0.01" value="0.05" class="slider wave-detune">
             </div>
         </div>
+
         <div class="wave-controls">
-            <h2>Triangle</h2>
-            <div class="volume-container">
+            <div class="control-top">
+                <h2>Triangle</h2>
                 <button name="triangle" class="toggle-active triangle-toggle">Off</button>
-                <input name="triangle" type="range" min="0" max="0.7" step="0.01" value="0.1" class="volume-slider wave-volume">
+            </div>
+            <div class="slider-container">
+                <label for="triangle">Volume:</label>
+                <input name="triangle" type="range" min="0" max="0.7" step="0.01" value="0.1" class="slider wave-volume">
+            </div>
+            <div class="slider-container">
+                <label for="triangle">Attack:</label>
+                <input name="triangle" type="range" min="0" max="0.3" step="0.01" value="0.05" class="slider wave-attack">
+            </div>
+            <div class="slider-container">
+                <label for="triangle">Release:</label>
+                <input name="triangle" type="range" min="0" max="0.3" step="0.01" value="0.05" class="slider wave-release">
+            </div>
+            <div class="slider-container">
+                <label for="triangle">Detune:</label>
+                <input name="triangle" type="range" min="0" max="0.3" step="0.01" value="0.05" class="slider wave-detune">
             </div>
         </div>
+
         <div class="wave-controls">
-            <h2>Sawtooth</h2>
-            <div class="volume-container">
+            <div class="control-top">
+                <h2>Sawtooth</h2>
                 <button name="sawtooth" class="toggle-active sawtooth-toggle">Off</button>
-                <input name="sawtooth" type="range" min="0" max="0.3" step="0.01" value="0.05" class="volume-slider wave-volume">
+            </div>
+            <div class="slider-container">
+                <label for="sawtooth">Volume:</label>
+                <input name="sawtooth" type="range" min="0" max="0.3" step="0.01" value="0.05" class="slider wave-volume">
+            </div>
+            <div class="slider-container">
+                <label for="sawtooth">Attack:</label>
+                <input name="sawtooth" type="range" min="0" max="0.3" step="0.01" value="0.05" class="slider wave-attack">
+            </div>
+            <div class="slider-container">
+                <label for="sawtooth">Release:</label>
+                <input name="sawtooth" type="range" min="0" max="0.3" step="0.01" value="0.05" class="slider wave-release">
+            </div>
+            <div class="slider-container">
+                <label for="sawtooth">Detune:</label>
+                <input name="sawtooth" type="range" min="0" max="0.3" step="0.01" value="0.05" class="slider wave-detune">
             </div>
         </div>
     </div>
