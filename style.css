@@ -19,16 +19,18 @@ body {
 }
 
 .wave-controls-parent {
-    background-color: var(--main-blue);
+    background: var(--main-blue);
     display: flex;
     flex-wrap: wrap;
     justify-content: space-evenly;
     padding: 30px;
     margin: auto;
+    box-shadow: 5px 10px 10px rgba(0, 0, 0, 0.1),
+        -5px 10px 10px rgba(0, 0, 0, 0.1);
 }
 
 .wave-controls {
-    background-color: #ffffff;
+    background: #ffffff;
     padding: 20px;
     width: 20vw;
     border-radius: 20px;
@@ -54,7 +56,7 @@ button {
     font-weight: bold;
     font-family: 'Poppins', sans-serif;
     border-radius: 30px;
-    background-color: var(--main-black);
+    background: var(--main-black);
     border: 2px solid var(--main-black);
     color: #fff;
     opacity: 0.8;
@@ -67,7 +69,7 @@ button:hover {
 }
 
 .active {
-    background-color: var(--main-blue);
+    background: var(--main-blue);
     border: var(--main-blue) 2px solid;
 }
 
@@ -102,13 +104,13 @@ button:hover {
     opacity: 0.7;
     -webkit-transition: .2s;
     transition: opacity .2s;
-  }
+}
   
-  .slider:hover {
+.slider:hover {
     opacity: 1;
-  }
+}
   
-  .slider::-webkit-slider-thumb {
+.slider::-webkit-slider-thumb {
     -webkit-appearance: none;
     appearance: none;
     width: 25px;
@@ -116,15 +118,15 @@ button:hover {
     border-radius: 50%;
     background: var(--main-blue);
     cursor: pointer;
-  }
+}
   
-  .slider::-moz-range-thumb {
+.slider::-moz-range-thumb {
     width: 25px;
     height: 25px;
     border-radius: 50%;
     background: var(--main-blue);
     cursor: pointer;
-  }
+}
 
 
 .keyboard-container {
@@ -148,8 +150,9 @@ button:hover {
 
 .black-key,
 .space {
-    background-color: #000;
-    border: #000 2px solid;
+    background: linear-gradient(black,var(--main-black));
+    border: black 3px solid;
+    border-bottom: black 5px solid;
     width: 7%;
     height: 100%;
     cursor: pointer;
@@ -158,8 +161,13 @@ button:hover {
     border-bottom-right-radius: 10px;
 }
 
+.black-key:hover {
+    background: var(--main-black);
+}
+
 .black-key:active {
     background: var(--main-blue);
+    border-bottom: black 3px solid;
 
 }
 
@@ -171,21 +179,32 @@ button:hover {
 .white-key {
     height: 100%;
     flex: 1;
-    border: #000 2px solid;
-    background-color: #fff;
+    border: var(--main-black) 2px solid;
+    /* background: #fff; */
+    background: radial-gradient( #ffffff 50%, #dddddd);
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
     cursor: pointer;
 }
 
+.white-key:hover {
+    background: #dddddd;
+}
 
+.white-key:first-child {
+    border-top-left-radius: 10px;
+}
+
+.white-key:last-child {
+    border-top-right-radius: 10px;
+}
 
 .white-key:active {
-    background-color: var(--main-blue);
+    background: var(--main-blue);
 }
 
 .active-key {
-    background-color: var(--main-blue);
+    background: var(--main-blue) !important;
 }
 
 .space {
