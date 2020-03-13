@@ -5,6 +5,7 @@ class WaveHandler {
         this.masterVolume = 0.5;
     }
 
+
     buildWaveDefaults() {
         let waves = {
             sine: {
@@ -17,7 +18,6 @@ class WaveHandler {
                         volume: 0.2
                     }    
                 },
-
                 active: true
             },
 
@@ -31,7 +31,6 @@ class WaveHandler {
                         volume: 0.2
                     }    
                 },
-
                 active: false
             },
 
@@ -45,7 +44,6 @@ class WaveHandler {
                         volume: 0.2
                     }    
                 },
-
                 active: false
             },
 
@@ -59,7 +57,6 @@ class WaveHandler {
                         volume: 0.2
                     }    
                 },
-
                 active: false
             }
         }
@@ -85,14 +82,17 @@ class WaveHandler {
         }, this.noteDuration);
     }
 
+
     toggleWaveActive(wave, state) {
         this.waves[wave].active = state;
     }
+
 
     updateWaveVolume(wave, volume) {
         this.waves[wave].settings.options.volume = parseFloat(volume);
     }
 }
+
 
 const whiteNotes = [
     {name: "c4", frequency: 261.63, letterKey: "a", isPressed: false},
@@ -107,6 +107,7 @@ const whiteNotes = [
     {name: "e5", frequency: 659.25, letterKey: ";", isPressed: false}
 ]
 
+
 const blackNotes = [
     {name: "cs4", frequency: 277.18, letterKey: "w", isPressed: false},
     {name: "ds4", frequency: 311.13, letterKey: "e", isPressed: false},
@@ -117,23 +118,24 @@ const blackNotes = [
     {name: "ds4", frequency: 622.25, letterKey: "p", isPressed: false}
 ]
 
+
 const whiteKeys = document.querySelectorAll('.white-key');
 const blackKeys = document.querySelectorAll('.black-key');
 const waveHandler = new WaveHandler();
-
 const toggleButtons = document.querySelectorAll('.toggle-active');
-const waveVolumeSliders = document.querySelectorAll('.volume-slider');
+const waveVolumeSliders = document.querySelectorAll('.wave-volume');
 
 
 function connectVolumeSliders() {
     waveVolumeSliders.forEach((slider) => {
+        waveHandler.waves[slider.name].settings.options.volume = parseFloat(slider.value);
+
         slider.addEventListener('input', () => {
             waveHandler.updateWaveVolume(slider.name, slider.value);
         });
     });
 }
 
-connectVolumeSliders();
 
 function connectToggleButtons() {
     toggleButtons.forEach((button) => {
@@ -151,7 +153,6 @@ function connectToggleButtons() {
     });
 }
 
-connectToggleButtons();
 
 function connectKeysToNotes(keyArray, noteArray) {
     keyArray.forEach((key, index) => {
@@ -177,6 +178,10 @@ function connectKeysToNotes(keyArray, noteArray) {
 }
 
 
+
+
+connectVolumeSliders();
+connectToggleButtons();
 connectKeysToNotes(whiteKeys, whiteNotes);
 connectKeysToNotes(blackKeys, blackNotes);
 
