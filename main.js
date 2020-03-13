@@ -1,6 +1,8 @@
 class WaveHandler {
     constructor() {
         this.waves = this.buildWaveDefaults();
+        this.noteDuration = 200;
+        this.masterVolume = 0.5;
     }
 
     buildWaveDefaults() {
@@ -10,9 +12,9 @@ class WaveHandler {
                     source: "wave",
                     options: {
                         type: "sine",
-                        attack: 0.1,
-                        release: 0.5,
-                        volume: 0.4
+                        attack: 0.01,
+                        release: 0.2,
+                        volume: 0.2
                     }    
                 },
 
@@ -26,7 +28,7 @@ class WaveHandler {
                         type: "square",
                         attack: 0.01,
                         release: 0.2,
-                        volume: 0.1
+                        volume: 0.2
                     }    
                 },
 
@@ -40,7 +42,7 @@ class WaveHandler {
                         type: "triangle",
                         attack: 0.01,
                         release: 0.2,
-                        volume: 0.1
+                        volume: 0.2
                     }    
                 },
 
@@ -54,7 +56,7 @@ class WaveHandler {
                         type: "sawtooth",
                         attack: 0.01,
                         release: 0.2,
-                        volume: 0.1
+                        volume: 0.2
                     }    
                 },
 
@@ -65,16 +67,6 @@ class WaveHandler {
         return waves;
     }
 
-    playSine(freq) {
-        let tempSine = new Pizzicato.Sound(this.waves.sine.settings);
-        tempSine.frequency = freq;
-
-        tempSine.play();
-     
-        setTimeout(() => {
-            tempSine.pause();
-        }, 200);
-    }
 
     playSound(freq) {
         let tempGroup = new Pizzicato.Group([]);
@@ -85,15 +77,20 @@ class WaveHandler {
             }
         };
 
+        tempGroup.volume = this.masterVolume;
         tempGroup.play();
      
         setTimeout(() => {
             tempGroup.pause();
-        }, 200);
+        }, this.noteDuration);
     }
 
     toggleWaveActive(wave, state) {
         this.waves[wave].active = state;
+    }
+
+    updateWaveVolume(wave, volume) {
+        this.waves[wave].settings.options.volume = parseFloat(volume);
     }
 }
 
@@ -124,8 +121,19 @@ const whiteKeys = document.querySelectorAll('.white-key');
 const blackKeys = document.querySelectorAll('.black-key');
 const waveHandler = new WaveHandler();
 
-
 const toggleButtons = document.querySelectorAll('.toggle-active');
+const waveVolumeSliders = document.querySelectorAll('.volume-slider');
+
+
+function connectVolumeSliders() {
+    waveVolumeSliders.forEach((slider) => {
+        slider.addEventListener('input', () => {
+            waveHandler.updateWaveVolume(slider.name, slider.value);
+        });
+    });
+}
+
+connectVolumeSliders();
 
 function connectToggleButtons() {
     toggleButtons.forEach((button) => {
@@ -139,8 +147,8 @@ function connectToggleButtons() {
                 button.classList.add('active');
                 button.innerHTML = "On";
             }
-        })
-    })
+        });
+    });
 }
 
 connectToggleButtons();
