@@ -99,6 +99,10 @@ class WaveHandler {
     setWaveAttack(wave, attack) {
         this.waves[wave].settings.options.attack = parseFloat(attack);
     }
+
+    setWaveRelease(wave, release) {
+        this.waves[wave].settings.options.release = parseFloat(release);
+    }
 }
 
 
@@ -133,6 +137,7 @@ const waveHandler = new WaveHandler();
 const toggleButtons = document.querySelectorAll('.toggle-active');
 const waveVolumeSliders = document.querySelectorAll('.wave-volume');
 const waveAttackSliders = document.querySelectorAll(".wave-attack");
+const waveReleaseSliders = document.querySelectorAll(".wave-release");
 const toggleControlView = document.querySelector(".toggle-settings-view");
 const waveSettingsBoxes = document.querySelectorAll(".wave-controls");
 const masterVolumeSlider = document.querySelector(".master-volume-slider");
@@ -166,6 +171,16 @@ function connectAttackSliders() {
 
         slider.addEventListener('input', () => {
             waveHandler.setWaveAttack(slider.name, slider.value);
+        });
+    });
+}
+
+function connectReleaseSliders() {
+    waveReleaseSliders.forEach((slider) => {
+        waveHandler.waves[slider.name].settings.options.release = parseFloat(slider.value);
+
+        slider.addEventListener('input', () => {
+            waveHandler.setWaveRelease(slider.name, slider.value);
         });
     });
 }
@@ -225,6 +240,7 @@ connectVolumeSliders();
 connectMasterVolume();
 connectToggleButtons();
 connectAttackSliders();
+connectReleaseSliders();
 connectKeysToNotes(whiteKeys, whiteNotes);
 connectKeysToNotes(blackKeys, blackNotes);
 makeSettingsExpandable();
