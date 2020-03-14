@@ -95,6 +95,10 @@ class WaveHandler {
     updateMasterVolume(volume) {
         this.masterVolume = parseFloat(volume);
     }
+
+    setWaveAttack(wave, attack) {
+        this.waves[wave].settings.options.attack = parseFloat(attack);
+    }
 }
 
 
@@ -128,6 +132,7 @@ const blackKeys = document.querySelectorAll('.black-key');
 const waveHandler = new WaveHandler();
 const toggleButtons = document.querySelectorAll('.toggle-active');
 const waveVolumeSliders = document.querySelectorAll('.wave-volume');
+const waveAttackSliders = document.querySelectorAll(".wave-attack");
 const toggleControlView = document.querySelector(".toggle-settings-view");
 const waveSettingsBoxes = document.querySelectorAll(".wave-controls");
 const masterVolumeSlider = document.querySelector(".master-volume-slider");
@@ -151,6 +156,16 @@ function connectVolumeSliders() {
 
         slider.addEventListener('input', () => {
             waveHandler.updateWaveVolume(slider.name, slider.value);
+        });
+    });
+}
+
+function connectAttackSliders() {
+    waveAttackSliders.forEach((slider) => {
+        waveHandler.waves[slider.name].settings.options.attack = parseFloat(slider.value);
+
+        slider.addEventListener('input', () => {
+            waveHandler.setWaveAttack(slider.name, slider.value);
         });
     });
 }
@@ -209,6 +224,7 @@ function connectKeysToNotes(keyArray, noteArray) {
 connectVolumeSliders();
 connectMasterVolume();
 connectToggleButtons();
+connectAttackSliders();
 connectKeysToNotes(whiteKeys, whiteNotes);
 connectKeysToNotes(blackKeys, blackNotes);
 makeSettingsExpandable();
