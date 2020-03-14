@@ -18,6 +18,7 @@ class WaveHandler {
                         volume: 0.2
                     }    
                 },
+                detune: 0,
                 active: true
             },
 
@@ -31,6 +32,7 @@ class WaveHandler {
                         volume: 0.2
                     }    
                 },
+                detune: 0,
                 active: false
             },
 
@@ -44,6 +46,7 @@ class WaveHandler {
                         volume: 0.2
                     }    
                 },
+                detune: 0,
                 active: false
             },
 
@@ -57,6 +60,7 @@ class WaveHandler {
                         volume: 0.2
                     }    
                 },
+                detune: 0,
                 active: false
             }
         }
@@ -69,7 +73,7 @@ class WaveHandler {
         let tempGroup = new Pizzicato.Group([]);
         for (let wave in this.waves) {
             if (this.waves[wave].active) {
-                this.waves[wave].settings.options.frequency = freq;
+                this.waves[wave].settings.options.frequency = freq + this.waves[wave].detune;
                 tempGroup.addSound(new Pizzicato.Sound(this.waves[wave].settings));
             }
         };
@@ -102,6 +106,10 @@ class WaveHandler {
 
     setWaveRelease(wave, release) {
         this.waves[wave].settings.options.release = parseFloat(release);
+    }
+
+    setWaveDetune(wave, detune) {
+        this.waves[wave].detune = parseFloat(detune);
     }
 }
 
@@ -138,6 +146,7 @@ const toggleButtons = document.querySelectorAll('.toggle-active');
 const waveVolumeSliders = document.querySelectorAll('.wave-volume');
 const waveAttackSliders = document.querySelectorAll(".wave-attack");
 const waveReleaseSliders = document.querySelectorAll(".wave-release");
+const waveDetuneSliders = document.querySelectorAll(".wave-detune");
 const toggleControlView = document.querySelector(".toggle-settings-view");
 const waveSettingsBoxes = document.querySelectorAll(".wave-controls");
 const masterVolumeSlider = document.querySelector(".master-volume-slider");
@@ -181,6 +190,16 @@ function connectReleaseSliders() {
 
         slider.addEventListener('input', () => {
             waveHandler.setWaveRelease(slider.name, slider.value);
+        });
+    });
+}
+
+function connectDetuneSliders() {
+    waveDetuneSliders.forEach((slider) => {
+        waveHandler.waves[slider.name].detune = parseFloat(slider.value);
+
+        slider.addEventListener('input', () => {
+            waveHandler.setWaveDetune(slider.name, slider.value);
         });
     });
 }
@@ -241,6 +260,7 @@ connectMasterVolume();
 connectToggleButtons();
 connectAttackSliders();
 connectReleaseSliders();
+connectDetuneSliders();
 connectKeysToNotes(whiteKeys, whiteNotes);
 connectKeysToNotes(blackKeys, blackNotes);
 makeSettingsExpandable();
