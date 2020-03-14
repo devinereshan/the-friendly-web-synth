@@ -249,7 +249,7 @@ function connectKeysToNotes(keyArray, noteArray) {
         });
     
         window.addEventListener("keydown", event => {
-            if (event.key == noteArray[index].letterKey && !noteArray[index].isPressed) {
+            if (event.key.toLowerCase() == noteArray[index].letterKey && !noteArray[index].isPressed) {
                 waveHandler.playSound(noteArray[index].frequency);
                 noteArray[index].isPressed = true;
                 key.classList.add("active-key");
@@ -257,7 +257,7 @@ function connectKeysToNotes(keyArray, noteArray) {
         });
     
         window.addEventListener("keyup", event => {
-            if (event.key == noteArray[index].letterKey) {
+            if (event.key.toLowerCase() == noteArray[index].letterKey) {
                 noteArray[index].isPressed = false;
                 key.classList.remove("active-key");
             }
