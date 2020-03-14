@@ -125,6 +125,21 @@ const waveHandler = new WaveHandler();
 const toggleButtons = document.querySelectorAll('.toggle-active');
 const waveVolumeSliders = document.querySelectorAll('.wave-volume');
 
+const toggleControlView = document.querySelector(".toggle-settings-view");
+const waveSettingsBoxes = document.querySelectorAll(".wave-controls");
+
+function makeSettingsExpandable() {
+    toggleControlView.addEventListener('click', () => {
+        console.log("clicked");
+        waveSettingsBoxes.forEach((wave) => {
+            if (wave.classList.contains("wave-open")) {
+                wave.classList.remove("wave-open");
+            } else {
+                wave.classList.add("wave-open")
+            }
+        })
+    });
+}
 
 function connectVolumeSliders() {
     waveVolumeSliders.forEach((slider) => {
@@ -184,4 +199,5 @@ connectVolumeSliders();
 connectToggleButtons();
 connectKeysToNotes(whiteKeys, whiteNotes);
 connectKeysToNotes(blackKeys, blackNotes);
+makeSettingsExpandable();
 

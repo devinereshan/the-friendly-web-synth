@@ -18,15 +18,20 @@ body {
     color: var(--main-black);
 }
 
+.settings {
+    background: var(--main-blue);
+    box-shadow: 5px 10px 10px rgba(0, 0, 0, 0.1),
+        -5px 10px 10px rgba(0, 0, 0, 0.1);
+}
+
 .wave-controls-parent {
     background: var(--main-blue);
     display: flex;
     flex-wrap: wrap;
     justify-content: space-evenly;
     padding: 30px;
+    padding-bottom: 0;
     margin: auto;
-    box-shadow: 5px 10px 10px rgba(0, 0, 0, 0.1),
-        -5px 10px 10px rgba(0, 0, 0, 0.1);
 }
 
 .wave-controls {
@@ -36,6 +41,12 @@ body {
     border-radius: 20px;
     box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.1),
         -5px 5px 5px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    
+    /* hide extra wave controls */
+    height: 5.5rem;
+    transition: height 0.3s;
+    
 }
 
 .control-top {
@@ -61,7 +72,7 @@ button {
     color: #fff;
     opacity: 0.8;
     cursor: pointer;
-    transition: opacity .2s;
+    transition: all .2s;
 }
 
 button:hover {
@@ -128,6 +139,31 @@ button:hover {
     cursor: pointer;
 }
 
+.toggle-settings-view-parent {
+    display: flex;
+    justify-content: center;
+}
+
+.toggle-settings-view {
+    color: #ffffff;
+    padding-top: 1rem;
+    padding-right: 1rem;
+    padding-left: 1rem;
+    cursor: pointer;
+    opacity: 0.8;
+    transition: opacity 0.2s;
+}
+
+.toggle-settings-view:hover {
+    opacity: 1;
+}
+
+.page-bottom {
+    position: fixed;
+    bottom: 40px;
+    width: 100%;
+    z-index: -1;
+}
 
 .keyboard-container {
     margin: auto;
@@ -180,7 +216,6 @@ button:hover {
     height: 100%;
     flex: 1;
     border: var(--main-black) 2px solid;
-    /* background: #fff; */
     background: radial-gradient( #ffffff 50%, #dddddd);
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
@@ -211,3 +246,22 @@ button:hover {
     opacity: 0;
     pointer-events: none;
 }
+
+.master-volume {
+    width: 90%;
+    margin: auto;
+    margin-top: 20px;
+}
+
+.master-volume .slider {
+    flex: 1;
+    margin-left: 2rem;
+}
+
+
+/* Open Wave controls */
+.wave-open {
+    height: 18rem;
+    transition: height 0.3s;
+}
+
