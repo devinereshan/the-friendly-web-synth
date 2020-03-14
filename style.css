@@ -251,6 +251,11 @@ button:hover {
     width: 90%;
     margin: auto;
     margin-top: 20px;
+    display: flex;
+}
+
+.master-volume .slider-container {
+    width: 50%;
 }
 
 .master-volume .slider {

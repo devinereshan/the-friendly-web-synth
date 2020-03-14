@@ -111,6 +111,10 @@ class WaveHandler {
     setWaveDetune(wave, detune) {
         this.waves[wave].detune = parseFloat(detune);
     }
+
+    setNoteDuration(duration) {
+        this.noteDuration = parseFloat(duration);
+    }
 }
 
 
@@ -150,6 +154,7 @@ const waveDetuneSliders = document.querySelectorAll(".wave-detune");
 const toggleControlView = document.querySelector(".toggle-settings-view");
 const waveSettingsBoxes = document.querySelectorAll(".wave-controls");
 const masterVolumeSlider = document.querySelector(".master-volume-slider");
+const noteDurationSlider = document.querySelector(".note-duration-slider");
 
 function makeSettingsExpandable() {
     toggleControlView.addEventListener('click', () => {
@@ -212,6 +217,14 @@ function connectMasterVolume() {
     });
 }
 
+function connectNoteDurationSlider() {
+    waveHandler.noteDuration = parseFloat(noteDurationSlider.value);
+
+    noteDurationSlider.addEventListener('input', function() {
+        waveHandler.setNoteDuration(this.value);
+    })
+}
+
 function connectToggleButtons() {
     toggleButtons.forEach((button) => {
         button.addEventListener('click', () => {
@@ -261,6 +274,7 @@ connectToggleButtons();
 connectAttackSliders();
 connectReleaseSliders();
 connectDetuneSliders();
+connectNoteDurationSlider();
 connectKeysToNotes(whiteKeys, whiteNotes);
 connectKeysToNotes(blackKeys, blackNotes);
 makeSettingsExpandable();
