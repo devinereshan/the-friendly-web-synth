@@ -302,3 +302,47 @@ button:hover {
     opacity: 1;
 }
 
+
+
+@media screen and (max-width: 1325px) {
+    .wave-controls {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        border: 1px solid black;
+        
+    }
+
+    .wave-open {
+        height: 20rem;
+    }
+
+    .control-top {
+        width: 100%;
+        font-size: 0.9rem;
+        margin-bottom: 0px;
+        
+    }
+
+    button {
+        width: 3.2rem;
+        height: 2.5rem;
+    }
+
+    .wave-controls .slider-container {
+        flex-direction: column;
+        width: 100%;
+    }
+
+     .slider-container label { 
+        padding-bottom: 5px;
+    } 
+
+    .wave-controls .slider-container .slider {
+        width: 100%;
+    }
+
+    .toggle-settings-view {
+        padding-top: 0.5rem;
+    }
+}
