@@ -157,6 +157,15 @@ const waveSettingsBoxes = document.querySelectorAll(".wave-controls");
 const masterVolumeSlider = document.querySelector(".master-volume-slider");
 const noteDurationSlider = document.querySelector(".note-duration-slider");
 
+const analyser = Pizzicato.context.createAnalyser();
+// analyser.fftSize = 2048;
+const bufferLength = analyser.frequencyBinCount;
+const dataArray = new Uint8Array(bufferLength);
+// analyser.getByteTimeDomainData(dataArray);
+
+const canvas = document.getElementById("animations");
+const canvasCtx = canvas.getContext("2d");
+
 
 function makeSettingsExpandable() {
     toggleControlView.addEventListener('click', () => {
@@ -170,6 +179,7 @@ function makeSettingsExpandable() {
     });
 }
 
+
 function connectVolumeSliders() {
     waveVolumeSliders.forEach((slider) => {
         waveHandler.waves[slider.name].settings.options.volume = parseFloat(slider.value);
@@ -179,6 +189,7 @@ function connectVolumeSliders() {
         });
     });
 }
+
 
 function connectAttackSliders() {
     waveAttackSliders.forEach((slider) => {
@@ -190,6 +201,7 @@ function connectAttackSliders() {
     });
 }
 
+
 function connectReleaseSliders() {
     waveReleaseSliders.forEach((slider) => {
         waveHandler.waves[slider.name].settings.options.release = parseFloat(slider.value);
@@ -199,6 +211,7 @@ function connectReleaseSliders() {
         });
     });
 }
+
 
 function connectDetuneSliders() {
     waveDetuneSliders.forEach((slider) => {
@@ -210,6 +223,7 @@ function connectDetuneSliders() {
     });
 }
 
+
 function connectMasterVolume() {
     waveHandler.masterVolume = parseFloat(masterVolumeSlider.value);
 
@@ -218,6 +232,7 @@ function connectMasterVolume() {
     });
 }
 
+
 function connectNoteDurationSlider() {
     waveHandler.noteDuration = parseFloat(noteDurationSlider.value);
 
@@ -225,6 +240,7 @@ function connectNoteDurationSlider() {
         waveHandler.setNoteDuration(this.value);
     })
 }
+
 
 function connectToggleButtons() {
     toggleButtons.forEach((button) => {
@@ -267,33 +283,6 @@ function connectKeysToNotes(keyArray, noteArray) {
 }
 
 
-
-
-connectVolumeSliders();
-connectMasterVolume();
-connectToggleButtons();
-connectAttackSliders();
-connectReleaseSliders();
-connectDetuneSliders();
-connectNoteDurationSlider();
-connectKeysToNotes(whiteKeys, whiteNotes);
-connectKeysToNotes(blackKeys, blackNotes);
-makeSettingsExpandable();
-
-// window.addEventListener("load", initFFT, false);
-
-
-let analyser = Pizzicato.context.createAnalyser();
-analyser.fftSize = 2048;
-let bufferLength = analyser.frequencyBinCount;
-let dataArray = new Uint8Array(bufferLength);
-analyser.getByteTimeDomainData(dataArray);
-
-let canvas = document.getElementById("animations");
-let canvasCtx = canvas.getContext("2d");
-
-// console.log(dataArray);
-
 function draw() {
     requestAnimationFrame(draw);
 
@@ -330,5 +319,21 @@ function draw() {
 
 }
 
-draw();
+function load() {
+    analyser.fftSize = 2048;
+    analyser.getByteTimeDomainData(dataArray);
 
+    connectVolumeSliders();
+    connectMasterVolume();
+    connectToggleButtons();
+    connectAttackSliders();
+    connectReleaseSliders();
+    connectDetuneSliders();
+    connectNoteDurationSlider();
+    connectKeysToNotes(whiteKeys, whiteNotes);
+    connectKeysToNotes(blackKeys, blackNotes);
+    makeSettingsExpandable();
+    draw();
+}
+
+window.addEventListener("load", load, false);
