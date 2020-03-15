@@ -158,11 +158,8 @@ const masterVolumeSlider = document.querySelector(".master-volume-slider");
 const noteDurationSlider = document.querySelector(".note-duration-slider");
 
 const analyser = Pizzicato.context.createAnalyser();
-// analyser.fftSize = 2048;
 const bufferLength = analyser.frequencyBinCount;
 const dataArray = new Uint8Array(bufferLength);
-// analyser.getByteTimeDomainData(dataArray);
-
 const canvas = document.getElementById("animations");
 const canvasCtx = canvas.getContext("2d");
 
@@ -292,7 +289,6 @@ function draw() {
     canvasCtx.fillRect(0, 0, canvas.width, canvas.height);
 
     canvasCtx.lineWidth = 5;
-    // canvasCtx.strokeStyle = "rgb(230, 100, 0)";
     canvasCtx.strokeStyle = "rgb(255, 69, 130)";
 
     canvasCtx.beginPath();
