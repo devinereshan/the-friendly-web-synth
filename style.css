@@ -162,6 +162,10 @@ button:hover {
     transition: opacity 0.2s;
 }
 
+.toggle-settings-view .up-arrow {
+    display: none;
+}
+
 .toggle-settings-view:hover {
     opacity: 1;
 }
@@ -301,6 +305,15 @@ button:hover {
 .wave-open .slider-container {
     opacity: 1;
 }
+
+.wave-open .toggle-settings-view .down-arrow {
+    display: none !important;
+}
+
+.wave-open .toggle-settings-view .up-arrow {
+    display: block;
+}
+
 
 
 

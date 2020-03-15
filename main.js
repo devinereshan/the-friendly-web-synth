@@ -169,10 +169,16 @@ function makeSettingsExpandable() {
         waveSettingsBoxes.forEach((wave) => {
             if (wave.classList.contains("wave-open")) {
                 wave.classList.remove("wave-open");
+                toggleControlView.firstElementChild.style.display = "block";
+                toggleControlView.lastElementChild.style.display = "none";
             } else {
-                wave.classList.add("wave-open")
+                wave.classList.add("wave-open");
+                toggleControlView.firstElementChild.style.display = "none";
+                toggleControlView.lastElementChild.style.display = "block";
             }
-        })
+        });
+
+        // toggleControlView.
     });
 }
 
