@@ -79,8 +79,9 @@ class WaveHandler {
         };
 
         tempGroup.volume = this.masterVolume;
+        tempGroup.connect(analyser);
         tempGroup.play();
-     
+        
         setTimeout(() => {
             tempGroup.pause();
         }, this.noteDuration);
@@ -156,9 +157,9 @@ const waveSettingsBoxes = document.querySelectorAll(".wave-controls");
 const masterVolumeSlider = document.querySelector(".master-volume-slider");
 const noteDurationSlider = document.querySelector(".note-duration-slider");
 
+
 function makeSettingsExpandable() {
     toggleControlView.addEventListener('click', () => {
-        console.log("clicked");
         waveSettingsBoxes.forEach((wave) => {
             if (wave.classList.contains("wave-open")) {
                 wave.classList.remove("wave-open");
@@ -278,4 +279,55 @@ connectNoteDurationSlider();
 connectKeysToNotes(whiteKeys, whiteNotes);
 connectKeysToNotes(blackKeys, blackNotes);
 makeSettingsExpandable();
+
+// window.addEventListener("load", initFFT, false);
+
+
+let analyser = Pizzicato.context.createAnalyser();
+analyser.fftSize = 2048;
+let bufferLength = analyser.frequencyBinCount;
+let dataArray = new Uint8Array(bufferLength);
+analyser.getByteTimeDomainData(dataArray);
+
+let canvas = document.getElementById("animations");
+let canvasCtx = canvas.getContext("2d");
+
+// console.log(dataArray);
+
+function draw() {
+    requestAnimationFrame(draw);
+
+    analyser.getByteTimeDomainData(dataArray);
+
+    canvasCtx.fillStyle = "rgb(255, 255, 255)";
+    canvasCtx.fillRect(0, 0, canvas.width, canvas.height);
+
+    canvasCtx.lineWidth = 5;
+    canvasCtx.strokeStyle = "rgb(230, 100, 0)";
+
+    canvasCtx.beginPath();
+
+    let sliceWidth = canvas.width * 1.0 / bufferLength;
+    let x = 0;
+
+    for (let i = 0; i < bufferLength; i++) {
+
+        let v = dataArray[i] / 128.0;
+        let y = v * canvas.height / 2;
+
+        if (i == 0) {
+            canvasCtx.moveTo(x, y);
+        } else {
+            canvasCtx.lineTo(x, y);
+        }
+
+        x += sliceWidth;
+    }
+
+    canvasCtx.lineTo(canvas.width, canvas.height / 2);
+    canvasCtx.stroke();
+
+}
+
+draw();
 
