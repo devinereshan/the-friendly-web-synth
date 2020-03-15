@@ -303,7 +303,8 @@ function draw() {
     canvasCtx.fillRect(0, 0, canvas.width, canvas.height);
 
     canvasCtx.lineWidth = 5;
-    canvasCtx.strokeStyle = "rgb(230, 100, 0)";
+    // canvasCtx.strokeStyle = "rgb(230, 100, 0)";
+    canvasCtx.strokeStyle = "rgb(255, 69, 130)";
 
     canvasCtx.beginPath();
 

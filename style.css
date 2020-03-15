@@ -19,7 +19,7 @@ body {
 }
 
 .settings {
-    position: fixed;
+    position: relative;
     width: 100%;
     background: var(--main-blue);
     box-shadow: 5px 10px 10px rgba(0, 0, 0, 0.1),
@@ -95,6 +95,11 @@ button:hover {
     justify-content: space-between;
 }
 
+.wave-controls .slider-container {
+    opacity: 0;
+    transition: opacity 1s;
+}
+
 .slider-container label {
     font-weight: 700;
     display: block;
@@ -164,11 +169,10 @@ button:hover {
 
 .animations {
     position: fixed;
-    background: lightblue;
+    top: 18vh;
     width: 100%;
     height: 30vh;
     z-index: 0;
-    margin-top: 10rem;
 }
 
 .animations canvas {
@@ -190,6 +194,9 @@ button:hover {
     width: 90%;
     height: 40vh;
     position: relative;
+    box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.1),
+        -5px 5px 5px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
 }
 
 .black-keys {
@@ -229,6 +236,9 @@ button:hover {
 .white-keys {
     height: 100%;
     display: flex;
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    
 }
 
 .white-key {
@@ -287,5 +297,9 @@ button:hover {
 .wave-open {
     height: 18rem;
     transition: height 0.3s;
+}
+
+.wave-open .slider-container {
+    opacity: 1;
 }
 
