@@ -317,6 +317,8 @@ button:hover {
     box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.8),
     0px 0px 10px rgba(255, 255, 255, 0.8);
     border-radius: 10px;    
+    flex-wrap: wrap;
+    justify-content: center;
 }
 
 .master-volume .slider-container {
@@ -361,10 +363,8 @@ button:hover {
 }
 
 .github-parent {
-    position: fixed;
     bottom: 0px;
     margin: auto;
-    z-index: 5;
 }
   
 .github {
@@ -509,10 +509,6 @@ button:hover {
 @media screen and (max-width: 860px) and (orientation: portrait) {
     .master-volume .slider-container {
         width: 100%;
-    }
-
-    .master-volume {
-        flex-wrap: wrap;
     }
 }
 
