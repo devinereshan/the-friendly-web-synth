@@ -172,7 +172,7 @@ button:hover {
 
 .animations {
     position: fixed;
-    top: 18vh;
+    top: 17vh;
     width: 100%;
     height: 30vh;
     z-index: 0;
@@ -360,7 +360,7 @@ button:hover {
     .wave-controls-parent {
         padding-top: 15px;
     }
-    
+
     .wave-controls {
         padding-top: 5px;
         height: 4.3rem;
@@ -392,6 +392,10 @@ button:hover {
     .toggle-settings-view {
         padding-top: 0;
     }
+
+    .animations {
+        top: 15vh;
+    }
 }
 
 
@@ -419,13 +423,25 @@ button:hover {
         flex-direction: row;
         margin-bottom: 10px;
         opacity: 1;
-        
+        pointer-events: all;
     }
 
     .wave-controls .slider-container,
     .control-top {
         flex: 1;
         flex-direction: row;
+    }
+
+    .animations {
+        top: 8vh;
+    }
+
+    .master-volume .slider-container {
+        width: 100%;
+    }
+
+    .master-volume {
+        flex-wrap: wrap;
     }
 }
 
