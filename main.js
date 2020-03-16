@@ -188,8 +188,6 @@ function makeSettingsExpandable() {
 
 function makeMobileSettingsExpandable() {
     mobileSettingsViewToggle.forEach((toggleButton) => {
-        console.log(toggleButton);
-        console.log(toggleButton.parentElement);
         toggleButton.addEventListener('click', () => {
             if (toggleButton.parentElement.classList.contains("mobile-open")) {
                 toggleButton.parentElement.classList.remove("mobile-open");
