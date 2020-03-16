@@ -444,6 +444,16 @@ button:hover {
         top: 8vh;
     }
 
+    /* .master-volume .slider-container {
+        width: 100%;
+    }
+
+    .master-volume {
+        flex-wrap: wrap;
+    } */
+}
+
+@media screen and (max-width: 860px) and (orientation: portrait) {
     .master-volume .slider-container {
         width: 100%;
     }
@@ -460,6 +470,14 @@ button:hover {
 }
 
 @media screen and (max-width: 600px) {
+    .mobile-absent {
+        display: none;
+    }
+
+    .last-mobile {
+        border-top-right-radius: 10px;
+    }
+
     .wave-open {
         display: flex;
         flex-direction: column;
