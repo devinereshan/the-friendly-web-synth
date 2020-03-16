@@ -282,7 +282,12 @@ function connectKeysToNotes(keyArray, noteArray) {
         key.addEventListener("touchstart", event => {
             event.preventDefault();
             waveHandler.playSound(noteArray[index].frequency);
+            key.classList.add("active-key");
         });
+
+        key.addEventListener("touchend", event => {
+            key.classList.remove("active-key");
+        })
 
         key.addEventListener('mousedown', () => {
             waveHandler.playSound(noteArray[index].frequency);
