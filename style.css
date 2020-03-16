@@ -113,7 +113,6 @@ button:hover {
 .slider {
     -webkit-appearance: none;
     width: 60%;
-    /* height: 15px; */
     height: 0.5rem;
     border-radius: 5px;
     background: var(--main-grey);
@@ -314,9 +313,6 @@ button:hover {
     display: block;
 }
 
-
-
-
 @media screen and (max-width: 1325px) {
     .wave-controls {
         display: flex;
@@ -364,6 +360,7 @@ button:hover {
     .wave-controls-parent {
         padding-top: 15px;
     }
+    
     .wave-controls {
         padding-top: 5px;
         height: 4.3rem;
@@ -399,7 +396,37 @@ button:hover {
 
 
 @media screen and (max-width: 860px) {
-    /* hamburger menu */
+    .wave-controls-parent {
+        overflow: hidden;
+    }
+
+    .wave-controls {
+        height: 0rem;
+        padding: 0;
+    }
+
+    .wave-controls {        
+        opacity: 0;
+        pointer-events: none;
+    }
+
+    .wave-open {
+        height: 5rem;
+        padding-right: 20px;
+        padding-left: 20px;
+        padding-bottom: 10px;
+        width: 100%;
+        flex-direction: row;
+        margin-bottom: 10px;
+        opacity: 1;
+        
+    }
+
+    .wave-controls .slider-container,
+    .control-top {
+        flex: 1;
+        flex-direction: row;
+    }
 }
 
 @media screen and (max-height: 600px) {
