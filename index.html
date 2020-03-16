@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Poppins&display=swap" rel="stylesheet">
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> -->
+    <link rel="stylesheet" href="lib/font-awesome-4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="style.css">
     <title>Web Synth</title>
 </head>
@@ -117,12 +119,10 @@
                     <input name="sawtooth" type="range" min="-10" max="10" step="1" value="0" class="slider wave-detune">
                 </div>
 
-                <!-- <div class="mobile-settings-toggle"> -->
-                    <div class="mobile-settings-toggle">
-                        <i class="material-icons down-arrow">keyboard_arrow_down</i>
-                        <i class="material-icons up-arrow">keyboard_arrow_up</i>
-                    </div>
-                <!-- </div> -->
+                <div class="mobile-settings-toggle">
+                    <i class="material-icons down-arrow">keyboard_arrow_down</i>
+                    <i class="material-icons up-arrow">keyboard_arrow_up</i>
+                </div>
             </div>
         </div>
 
@@ -178,6 +178,12 @@
                 <label for="note-duration">Note Duration</label>
                 <input name="note-duration" type="range" min="0" max="2000" step="100" value="200" class="note-duration-slider slider">
             </div>
+        </div>
+    </div>
+    
+    <div class="source">
+        <div class="github-parent">
+            <a href="https://github.com/devinereshan" class="github"><i class="fa fa-github"></i></a>
         </div>
     </div>
 

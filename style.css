@@ -171,10 +171,12 @@ button:hover {
 
 
 .animations {
-    position: fixed;
-    top: 17vh;
+    position: relative;
+    margin-top: 0px;
+    top: 0px;
+
     width: 100%;
-    height: 30vh;
+    height: 25vh;
     z-index: 0;
 }
 
@@ -234,16 +236,13 @@ button:hover {
 .black-key:active {
     background: var(--main-blue);
     border-bottom: black 3px solid;
-
 }
 
 .white-keys {
     height: 100%;
     display: flex;
     background: rgba(0, 0, 0, 0.2);
-    border-radius: 10px;
-    /* align-items: center; */
-    
+    border-radius: 10px;    
 }
 
 .white-key {
@@ -262,7 +261,6 @@ button:hover {
 .black-key span {
     font-size: 1.2rem;
     text-transform: uppercase;
-    /* color: var(--main-grey); */
     display: block;
     position: relative;
     top: 70%;
@@ -305,6 +303,10 @@ button:hover {
     margin: auto;
     margin-top: 20px;
     display: flex;
+    background: rgba(255, 255, 255, 0.8);
+    box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.8),
+    0px 0px 10px rgba(255, 255, 255, 0.8);
+    border-radius: 10px;    
 }
 
 .master-volume .slider-container {
@@ -342,6 +344,33 @@ button:hover {
 .mobile-open {
     display: none;
 }
+
+.source {
+    display: flex;
+    justify-content: center;
+}
+
+.github-parent {
+    position: fixed;
+    bottom: 0px;
+    margin: auto;
+    z-index: 5;
+}
+  
+.github {
+    display: block;
+    text-align: center;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    color: var(--main-black);
+    opacity: 0.7;
+    font-size: 2rem;
+}
+
+.github:hover {
+    opacity: 1;
+}
+  
 
 @media screen and (max-width: 1325px) {
     .wave-controls {
@@ -424,7 +453,7 @@ button:hover {
     }
 
     .animations {
-        top: 15vh;
+        top: 5vh;
     }
 }
 
@@ -463,16 +492,8 @@ button:hover {
     }
 
     .animations {
-        top: 8vh;
+        top: 4vh;
     }
-
-    /* .master-volume .slider-container {
-        width: 100%;
-    }
-
-    .master-volume {
-        flex-wrap: wrap;
-    } */
 }
 
 @media screen and (max-width: 860px) and (orientation: portrait) {
