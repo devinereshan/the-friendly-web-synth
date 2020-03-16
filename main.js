@@ -279,6 +279,11 @@ function connectToggleButtons() {
 
 function connectKeysToNotes(keyArray, noteArray) {
     keyArray.forEach((key, index) => {
+        key.addEventListener("touchstart", event => {
+            event.preventDefault();
+            waveHandler.playSound(noteArray[index].frequency);
+        });
+
         key.addEventListener('mousedown', () => {
             waveHandler.playSound(noteArray[index].frequency);
         });
