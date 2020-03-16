@@ -563,6 +563,7 @@ button:hover {
         cursor: pointer;
         opacity: 0.8;
         order: 2;
+        top: 40px;
     }
 
     .mobile-settings-toggle:hover {
