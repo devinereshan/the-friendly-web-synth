@@ -461,32 +461,36 @@ button:hover {
 
 @media screen and (max-width: 600px) {
     .wave-open {
-        /* overflow: visible; */
+        display: flex;
         flex-direction: column;
-        /* flex-wrap: wrap; */
-        height: 7rem;
+        flex-wrap: nowrap;
+        height: 6rem;
         padding-bottom: 0;
     }
 
     .wave-open .control-top {
         width: 100%;
-        /* flex: 2; */
+        margin-right: 20px;
+        order: 1;
+        padding-bottom: 10px;
     }
 
     .wave-open .slider-container {
         width: 100%;
         opacity: 0;
-        /* transition: opacity 0.2s; */
-        display: none;
+        transition: opacity 0.5s;
+        order: 3;
     }
 
     .mobile-settings-toggle {
+        width: 100%;
         display: block;
-        /* justify-content: center; */
+        justify-content: center;
+        align-items: center;
         text-align: center;
-        /* margin-bottom: 0; */
         cursor: pointer;
         opacity: 0.8;
+        order: 2;
     }
 
     .mobile-settings-toggle:hover {
@@ -509,6 +513,7 @@ button:hover {
     }
 
     .mobile-open .slider-container {
+        position: relative;
         display: block;
         opacity: 1;
         padding: 0;
@@ -520,6 +525,10 @@ button:hover {
 
     .mobile-open .up-arrow {
         display: block;
+    }
+
+    .mobile-open .mobile-settings-toggle {
+        order: 4;
     }
 
 }
