@@ -156,6 +156,7 @@ const toggleControlView = document.querySelector(".toggle-settings-view");
 const waveSettingsBoxes = document.querySelectorAll(".wave-controls");
 const masterVolumeSlider = document.querySelector(".master-volume-slider");
 const noteDurationSlider = document.querySelector(".note-duration-slider");
+const mobileSettingsViewToggle = document.querySelectorAll(".mobile-settings-toggle");
 
 const analyser = Pizzicato.context.createAnalyser();
 const bufferLength = analyser.frequencyBinCount;
@@ -176,11 +177,28 @@ function makeSettingsExpandable() {
                 toggleControlView.firstElementChild.style.display = "none";
                 toggleControlView.lastElementChild.style.display = "block";
             }
+
+            if (wave.classList.contains("mobile-open")) {
+                wave.classList.remove("mobile-open");
+            }
         });
 
     });
 }
 
+function makeMobileSettingsExpandable() {
+    mobileSettingsViewToggle.forEach((toggleButton) => {
+        console.log(toggleButton);
+        console.log(toggleButton.parentElement);
+        toggleButton.addEventListener('click', () => {
+            if (toggleButton.parentElement.classList.contains("mobile-open")) {
+                toggleButton.parentElement.classList.remove("mobile-open");
+            } else {
+                toggleButton.parentElement.classList.add("mobile-open");
+            }
+        });
+    });
+}
 
 function connectVolumeSliders() {
     waveVolumeSliders.forEach((slider) => {
@@ -334,6 +352,7 @@ function load() {
     connectKeysToNotes(whiteKeys, whiteNotes);
     connectKeysToNotes(blackKeys, blackNotes);
     makeSettingsExpandable();
+    makeMobileSettingsExpandable();
     draw();
 }
 
