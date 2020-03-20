@@ -153,6 +153,7 @@ const waveAttackSliders = document.querySelectorAll(".wave-attack");
 const waveReleaseSliders = document.querySelectorAll(".wave-release");
 const waveDetuneSliders = document.querySelectorAll(".wave-detune");
 const toggleControlView = document.querySelector(".toggle-settings-view");
+const controlView = document.querySelector(".wave-controls-parent");
 const waveSettingsBoxes = document.querySelectorAll(".wave-controls");
 const masterVolumeSlider = document.querySelector(".master-volume-slider");
 const noteDurationSlider = document.querySelector(".note-duration-slider");
@@ -167,23 +168,16 @@ const canvasCtx = canvas.getContext("2d");
 
 function makeSettingsExpandable() {
     toggleControlView.addEventListener('click', () => {
-        waveSettingsBoxes.forEach((wave) => {
-            if (wave.classList.contains("wave-open")) {
-                wave.classList.remove("wave-open");
-                toggleControlView.firstElementChild.style.display = "block";
-                toggleControlView.lastElementChild.style.display = "none";
-            } else {
-                wave.classList.add("wave-open");
-                toggleControlView.firstElementChild.style.display = "none";
-                toggleControlView.lastElementChild.style.display = "block";
-            }
-
-            if (wave.classList.contains("mobile-open")) {
-                wave.classList.remove("mobile-open");
-            }
-        });
-
-    });
+        if (controlView.classList.contains("settings-open")) {
+            controlView.classList.remove("settings-open");
+            toggleControlView.firstElementChild.style.display = "block";
+            toggleControlView.lastElementChild.style.display = "none";
+        } else {
+            controlView.classList.add("settings-open");
+            toggleControlView.firstElementChild.style.display = "none";
+            toggleControlView.lastElementChild.style.display = "block";
+        }
+    })
 }
 
 function makeMobileSettingsExpandable() {
@@ -191,12 +185,15 @@ function makeMobileSettingsExpandable() {
         toggleButton.addEventListener('click', () => {
             if (toggleButton.parentElement.classList.contains("mobile-open")) {
                 toggleButton.parentElement.classList.remove("mobile-open");
+                toggleButton.parentElement.classList.add("mobile-closed")
             } else {
                 toggleButton.parentElement.classList.add("mobile-open");
+                toggleButton.parentElement.classList.remove("mobile-closed");
             }
         });
     });
 }
+
 
 function connectVolumeSliders() {
     waveVolumeSliders.forEach((slider) => {
@@ -280,7 +277,9 @@ function connectToggleButtons() {
 function connectKeysToNotes(keyArray, noteArray) {
     keyArray.forEach((key, index) => {
         key.addEventListener("touchstart", event => {
-            event.preventDefault();
+            if (event.cancelable) {
+                event.preventDefault();
+            }
             waveHandler.playSound(noteArray[index].frequency);
             key.classList.add("active-key");
         });

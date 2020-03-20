@@ -18,64 +18,79 @@ body {
     color: var(--main-black);
 }
 
+/* Top Settings Bar */
+
 .settings {
     position: relative;
     width: 100%;
     background: var(--main-blue);
-    box-shadow: 5px 10px 10px rgba(0, 0, 0, 0.1),
-        -5px 10px 10px rgba(0, 0, 0, 0.1);
+    padding: 0 30px;
+    padding-bottom: 0;
+    overflow: hidden;
     z-index: 3;
+
 }
 
 .wave-controls-parent {
-    background: var(--main-blue);
+    position: relative;
     display: flex;
-    flex-wrap: wrap;
-    justify-content: space-evenly;
-    padding: 30px;
-    padding-bottom: 0;
-    margin: auto;
+    flex-direction: column;    
+    overflow: hidden;
+    height: 0px;
+    transition: all 0.3s;
     z-index: 4;
+
+}
+
+.settings-open {
+    margin-top: 30px;
+    height: fit-content;
+}
+
+.settings-open .wave-controls {
+    opacity: 1;
 }
 
 .wave-controls {
     background: #ffffff;
-    padding: 20px;
-    width: 20vw;
+    padding: 0 1.3rem;
+    padding-bottom: 0;
     border-radius: 20px;
+    opacity: 0;
     box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.1),
         -5px 5px 5px rgba(0, 0, 0, 0.1);
-    overflow: hidden;
-    
-    /* hide extra wave controls */
-    height: 5.5rem;
-    transition: height 0.3s;    
+    transition: height 0.2s, opacity 0.5s;
+
+    margin-bottom: 10px;
 }
 
 .control-top {
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
     align-items: center;
-    text-transform: uppercase;
+    font-size: 0.8rem;
+}
+
+.control-top h2 {
+    margin: 10px 0;
     font-size: 1.1rem;
-    margin-bottom: 20px;
 }
 
 button {
-    width: 4.5rem;
-    height: 3.2rem;
+    width: 100%;
+    padding: 0.5em;
+    margin-bottom: 10px;
     text-transform: uppercase;
     letter-spacing: 3px;
-    font-size: 1.1rem;
     font-weight: bold;
     font-family: 'Poppins', sans-serif;
     border-radius: 30px;
     background: var(--main-black);
-    border: 2px solid var(--main-black);
-    color: #fff;
+    border: none;
+    color: #ffffff;
     opacity: 0.8;
     cursor: pointer;
-    transition: all .2s;
+    transition: all 0.2s;
 }
 
 button:hover {
@@ -84,50 +99,49 @@ button:hover {
 
 .active {
     background: var(--main-blue);
-    border: var(--main-blue) 2px solid;
 }
 
-.slider-container {
-    display: flex;
-    flex-wrap: wrap;
-    padding: 10px;
-    align-items: center;
-    justify-content: space-between;
+/* collapsible mobile settings */
+.collapsible {
+    overflow: hidden;
+    max-height: 0;
 }
 
 .wave-controls .slider-container {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 0px;
     opacity: 0;
-    transition: opacity 1s;
-}
-
-.slider-container label {
+    height: 0px;
     font-weight: 700;
-    display: block;
+    pointer-events: none;
+    transition: all 0.5s;
 }
 
-.slider-container input {
-    margin-right: 10px;
+.wave-controls .slider-container label {
+    margin-left: 10px;
+    margin-bottom: 5px;
 }
-
 
 .slider {
     -webkit-appearance: none;
-    width: 60%;
-    height: 0.5rem;
+    margin: 0 10px 10px 10px;
+    height: 0.8rem;
     border-radius: 5px;
     background: var(--main-grey);
-    
-    /* background: var(--main-pink); */
+
     outline: none;
     opacity: 0.7;
     -webkit-transition: .2s;
     transition: opacity .2s;
+
+    cursor: pointer;
 }
-  
+
 .slider:hover {
     opacity: 1;
 }
-  
+
 .slider::-webkit-slider-thumb {
     -webkit-appearance: none;
     appearance: none;
@@ -137,7 +151,7 @@ button:hover {
     background: var(--main-blue);
     cursor: pointer;
 }
-  
+
 .slider::-moz-range-thumb {
     width: 25px;
     height: 25px;
@@ -146,12 +160,56 @@ button:hover {
     cursor: pointer;
 }
 
+.mobile-settings-toggle {
+    text-align: center;
+    opacity: 0.8;
+    cursor: pointer;
+}
+
+.mobile-settings-toggle:hover {
+    opacity: 1;
+}
+
+.mobile-closed .collapsible {
+    max-height: 0;
+}
+
+.mobile-open .collapsible {
+    max-height: fit-content;
+}
+
+.mobile-open .slider-container {
+    opacity: 1;
+    height: fit-content;
+    margin-bottom: 5px;
+    pointer-events: all;
+}
+
+.mobile-closed .down-arrow {
+    display: block;
+}
+
+.mobile-open .down-arrow {
+    display: none;
+}
+
+.mobile-closed .up-arrow {
+    display: none;
+}
+
+.mobile-open .up-arrow {
+    display: block;
+}
+
 .toggle-settings-view-parent {
     display: flex;
     justify-content: center;
+    /* border: 1px solid black; */
 }
 
 .toggle-settings-view {
+    width: 100%;
+    text-align: center;
     color: #ffffff;
     padding-top: 1rem;
     padding-right: 1rem;
@@ -169,14 +227,13 @@ button:hover {
     opacity: 1;
 }
 
-
+/* Wave animations */
 .animations {
     position: relative;
     margin-top: 0px;
-    top: 0px;
 
     width: 100%;
-    height: 25vh;
+    height: 35vh;
     z-index: 0;
 }
 
@@ -186,17 +243,15 @@ button:hover {
 }
 
 .page-bottom {
-    position: fixed;
-    bottom: 40px;
+    position: relative;
     width: 100%;
     z-index: 1;
 }
 
 .keyboard-container {
     margin: auto;
-    margin-top: 10vh;
     width: 90%;
-    height: 40vh;
+    height: 35vh;
     position: relative;
     box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.1),
         -5px 5px 5px rgba(0, 0, 0, 0.1);
@@ -307,6 +362,13 @@ button:hover {
     user-select: none; /* Non-prefixed version, currently supported by Chrome, Opera and Firefox */
 }
 
+.mobile-absent {
+    display: none;
+}
+
+.last-mobile {
+    border-top-right-radius: 10px;
+}
 
 .master-volume {
     width: 90%;
@@ -321,39 +383,27 @@ button:hover {
     justify-content: center;
 }
 
+.master-volume label {
+    font-weight: 700;
+    font-size: 1rem;
+}
+
 .master-volume .slider-container {
-    width: 50%;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    width: 100%;
 }
 
 .master-volume .slider {
-    flex: 1;
-    margin-left: 2rem;
+    margin-top: 10px;
+    width: 100%;
 }
 
 
-/* Open Wave controls */
-.wave-open {
-    height: 18rem;
-    transition: height 0.3s;
-}
-
-.wave-open .slider-container {
-    opacity: 1;
-}
-
-.wave-open .toggle-settings-view .down-arrow {
-    display: none !important;
-}
-
-.wave-open .toggle-settings-view .up-arrow {
-    display: block;
-}
-
-.mobile-settings-toggle {
-    display: none;
-}
 
 .source {
+    margin-top: 10px;
     display: flex;
     justify-content: center;
 }
@@ -378,221 +428,51 @@ button:hover {
 }
   
 
-@media screen and (max-width: 1325px) {
-    .wave-controls {
-        display: flex;
-        flex-direction: row;
-        flex-wrap: wrap; 
-        height: 3.8rem;  
-        padding-top: 10px;     
-    }
-
-    .wave-open {
-        height: 20rem;
-    }
-
-    .control-top {
-        width: 100%;
-        font-size: 0.9rem;
-        margin-bottom: 0px;
-        
-    }
-
-    button {
-        width: 3.2rem;
-        height: 2.5rem;
-    }
-
-    .wave-controls .slider-container {
-        width: 100%;
-    }
-
-     .slider-container label { 
-        padding-bottom: 5px;
-    } 
-
-    .wave-controls .slider-container .slider {
-        width: 100%;
-    }
-
-    .toggle-settings-view {
-        padding-top: 0.5rem;
-    }
-}
 
 
-@media screen and (max-width: 1090px) {
-    .wave-controls-parent {
-        padding-top: 15px;
-    }
-
-    .wave-controls {
-        padding-top: 5px;
-        height: 4.3rem;
-    }
-
-    .control-top {
-        font-size: 0.8rem;
-        justify-content: center;
-        flex-wrap: wrap;
-    }
-
-    button {
-        margin-top: 0px;
-        width: 100%;
-        height: 1.7rem;
-        font-size: 1rem;
-    }
-    
-    .wave-open {
-        height: 20rem;
-    }
-
-    .slider::-webkit-slider-thumb {
-        height: 20px;
-        width: 20px;
-    }
-    
-
-    .toggle-settings-view {
-        padding-top: 0;
-    }
-
+@media screen and (min-width: 860px) {
     .animations {
-        top: 5vh;
+        height: 25vh;
     }
-}
-
-
-@media screen and (max-width: 860px) {
+    .mobile-absent {
+        display: block;
+    }
+    
+    .last-mobile {
+        border-top-right-radius: 0px;
+    }
+    
     .wave-controls-parent {
-        overflow: hidden;
-    }
-
-    .wave-controls {
-        height: 0rem;
-        padding: 0;
-    }
-
-    .wave-controls {        
-        opacity: 0;
-        pointer-events: none;
-    }
-
-    .wave-open {
-        height: 5rem;
-        padding-right: 20px;
-        padding-left: 20px;
-        padding-bottom: 10px;
-        width: 100%;
         flex-direction: row;
-        margin-bottom: 10px;
+        justify-content: space-around;
+        height: fit-content;
+        margin-top: 30px;
+    }
+
+    .mobile-closed .up-arrow,
+    .mobile-closed .down-arrow {
+        display: none;
+    }
+
+    .mobile-closed .collapsible{
+        max-height: fit-content;
+    }
+ 
+    .mobile-closed .slider-container {
         opacity: 1;
+        height: fit-content;
+        margin-bottom: 5px;
         pointer-events: all;
     }
 
-    .wave-controls .slider-container,
-    .control-top {
-        flex: 1;
-        flex-direction: row;
-    }
-
-    .animations {
-        top: 4vh;
-    }
-}
-
-@media screen and (max-width: 860px) and (orientation: portrait) {
-    .master-volume .slider-container {
-        width: 100%;
-    }
-}
-
-@media screen and (max-height: 600px) {
-    .page-bottom {
-        bottom: 20px;
-    }
-}
-
-@media screen and (max-width: 600px) {
-    .mobile-absent {
-        display: none;
-    }
-
-    .last-mobile {
-        border-top-right-radius: 10px;
-    }
-
-    .wave-open {
-        display: flex;
-        flex-direction: column;
-        flex-wrap: nowrap;
-        height: 6.3rem;
-        padding-bottom: 0;
-    }
-
-    .wave-open .control-top {
-        display: flex;
-        width: 100%;
-        margin-right: 20px;
-        order: 1;
-        padding-bottom: 10px;
-    }
-
-    .wave-open .slider-container {
-        width: 100%;
-        opacity: 0;
-        transition: opacity 0.5s;
-        order: 3;
-    }
-
-    .mobile-settings-toggle {
-        width: 100%;
-        display: block;
-        justify-content: center;
-        align-items: center;
-        text-align: center;
-        cursor: pointer;
-        opacity: 0.8;
-        order: 2;
-    }
-
-    .mobile-settings-toggle:hover {
+    .wave-controls {
         opacity: 1;
+        height: 5.7rem;
+        overflow: hidden;
+        width: 20%;
     }
 
-    .mobile-settings-toggle .up-arrow {
-        display: none;
+    .settings-open .wave-controls {
+        height: 21rem;
     }
-
-    .mobile-settings .down-arrow {
-        display: block;
-    }
-
-    .mobile-open {
-        display: flex;
-        flex-direction: column;
-        flex-wrap: wrap;
-        height: 22rem;
-    }
-
-    .mobile-open .slider-container {
-        position: relative;
-        display: block;
-        opacity: 1;
-        padding: 0;
-    }
-
-    .mobile-open .down-arrow {
-        display: none;
-    }
-
-    .mobile-open .up-arrow {
-        display: block;
-    }
-
-    .mobile-open .mobile-settings-toggle {
-        order: 4;
-    }
-
 }
