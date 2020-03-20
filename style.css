@@ -59,7 +59,7 @@ body {
     opacity: 0;
     box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.1),
         -5px 5px 5px rgba(0, 0, 0, 0.1);
-    transition: height 0.2s, opacity 0.5s;
+    transition: height 0.3s, opacity 0.3s;
 
     margin-bottom: 10px;
 }
@@ -90,7 +90,6 @@ button {
     color: #ffffff;
     opacity: 0.8;
     cursor: pointer;
-    transition: all 0.2s;
 }
 
 button:hover {
@@ -115,7 +114,7 @@ button:hover {
     height: 0px;
     font-weight: 700;
     pointer-events: none;
-    transition: all 0.5s;
+    transition: all 0.3s;
 }
 
 .wave-controls .slider-container label {
@@ -132,8 +131,8 @@ button:hover {
 
     outline: none;
     opacity: 0.7;
-    -webkit-transition: .2s;
-    transition: opacity .2s;
+    -webkit-transition: .3s;
+    transition: opacity .3s;
 
     cursor: pointer;
 }
@@ -216,7 +215,7 @@ button:hover {
     padding-left: 1rem;
     cursor: pointer;
     opacity: 0.8;
-    transition: opacity 0.2s;
+    transition: opacity 0.3s;
 }
 
 .toggle-settings-view .up-arrow {
