@@ -44,7 +44,8 @@ body {
 
 .settings-open {
     margin-top: 30px;
-    height: fit-content;
+    /* height: fit-content; */
+    height: unset;
 }
 
 .settings-open .wave-controls {
@@ -101,7 +102,7 @@ button:hover {
 }
 
 /* collapsible mobile settings */
-.collapsible {
+.mobile-closed .collapsible {
     overflow: hidden;
     max-height: 0;
 }
@@ -110,8 +111,6 @@ button:hover {
     display: flex;
     flex-direction: column;
     margin-bottom: 0px;
-    opacity: 0;
-    height: 0px;
     font-weight: 700;
     pointer-events: none;
     transition: all 0.3s;
@@ -174,12 +173,12 @@ button:hover {
 }
 
 .mobile-open .collapsible {
-    max-height: fit-content;
+    max-height: unset;
 }
 
 .mobile-open .slider-container {
     opacity: 1;
-    height: fit-content;
+    height: unset !important;
     margin-bottom: 5px;
     pointer-events: all;
 }
@@ -203,7 +202,6 @@ button:hover {
 .toggle-settings-view-parent {
     display: flex;
     justify-content: center;
-    /* border: 1px solid black; */
 }
 
 .toggle-settings-view {
@@ -444,7 +442,7 @@ button:hover {
     .wave-controls-parent {
         flex-direction: row;
         justify-content: space-around;
-        height: fit-content;
+        height: unset;
         margin-top: 30px;
     }
 
@@ -454,12 +452,25 @@ button:hover {
     }
 
     .mobile-closed .collapsible{
-        max-height: fit-content;
+        max-height: unset !important;
+    }
+
+    .collapsible {
+        opacity: 1;
     }
  
     .mobile-closed .slider-container {
         opacity: 1;
-        height: fit-content;
+        max-height: unset;
+        margin-bottom: 5px;
+        pointer-events: all;
+        max-height: fit-content;
+    }
+
+    .slider-container {
+        display: block;
+        opacity: 1 !important;
+        height: unset;
         margin-bottom: 5px;
         pointer-events: all;
     }
