@@ -16,7 +16,7 @@ class WaveHandler {
                         attack: 0.01,
                         release: 0.2,
                         volume: 0.2
-                    }    
+                    }
                 },
                 detune: 0,
                 active: true
@@ -30,7 +30,7 @@ class WaveHandler {
                         attack: 0.01,
                         release: 0.2,
                         volume: 0.2
-                    }    
+                    }
                 },
                 detune: 0,
                 active: false
@@ -44,13 +44,13 @@ class WaveHandler {
                         attack: 0.01,
                         release: 0.2,
                         volume: 0.2
-                    }    
+                    }
                 },
                 detune: 0,
                 active: false
             },
 
-            sawtooth: { 
+            sawtooth: {
                 settings: {
                     source: "wave",
                     options: {
@@ -58,7 +58,7 @@ class WaveHandler {
                         attack: 0.01,
                         release: 0.2,
                         volume: 0.2
-                    }    
+                    }
                 },
                 detune: 0,
                 active: false
@@ -81,7 +81,7 @@ class WaveHandler {
         tempGroup.volume = this.masterVolume;
         tempGroup.connect(analyser);
         tempGroup.play();
-        
+
         setTimeout(() => {
             tempGroup.pause();
         }, this.noteDuration);
@@ -162,6 +162,7 @@ const mobileSettingsViewToggle = document.querySelectorAll(".mobile-settings-tog
 const analyser = Pizzicato.context.createAnalyser();
 const bufferLength = analyser.frequencyBinCount;
 const dataArray = new Uint8Array(bufferLength);
+const dpi = window.devicePixelRatio;
 const canvas = document.getElementById("animations");
 const canvasCtx = canvas.getContext("2d");
 
@@ -291,7 +292,7 @@ function connectKeysToNotes(keyArray, noteArray) {
         key.addEventListener('mousedown', () => {
             waveHandler.playSound(noteArray[index].frequency);
         });
-    
+
         window.addEventListener("keydown", event => {
             if (event.key.toLowerCase() == noteArray[index].letterKey && !noteArray[index].isPressed) {
                 waveHandler.playSound(noteArray[index].frequency);
@@ -299,7 +300,7 @@ function connectKeysToNotes(keyArray, noteArray) {
                 key.classList.add("active-key");
             }
         });
-    
+
         window.addEventListener("keyup", event => {
             if (event.key.toLowerCase() == noteArray[index].letterKey) {
                 noteArray[index].isPressed = false;
@@ -309,11 +310,21 @@ function connectKeysToNotes(keyArray, noteArray) {
     });
 }
 
+function fixDpi() {
+    let styleHeight = +getComputedStyle(canvas).getPropertyValue('height').slice(0, -2);
+
+    let styleWidth = +getComputedStyle(canvas).getPropertyValue('width').slice(0, -2);
+
+    canvas.setAttribute('height', styleHeight * dpi);
+    canvas.setAttribute('width', styleWidth * dpi);
+}
 
 function draw() {
     requestAnimationFrame(draw);
 
     analyser.getByteTimeDomainData(dataArray);
+
+    fixDpi();
 
     canvasCtx.fillStyle = "rgb(255, 255, 255)";
     canvasCtx.fillRect(0, 0, canvas.width, canvas.height);
